@@ -1,16 +1,16 @@
-# Path converter
+# Path converter (Fork)
 
-[![Build status](https://img.shields.io/github/actions/workflow/status/matthiasmullie/path-converter/test.yml?branch=master&style=flat-square)](https://github.com/matthiasmullie/path-converter/actions/workflows/test.yml)
-[![Code coverage](http://img.shields.io/codecov/c/gh/matthiasmullie/path-converter?style=flat-square)](https://codecov.io/gh/matthiasmullie/path-converter)
-[![Latest version](http://img.shields.io/packagist/v/matthiasmullie/path-converter?style=flat-square)](https://packagist.org/packages/matthiasmullie/path-converter)
-[![Downloads total](http://img.shields.io/packagist/dt/matthiasmullie/path-converter?style=flat-square)](https://packagist.org/packages/matthiasmullie/path-converter)
-[![License](http://img.shields.io/packagist/l/matthiasmullie/path-converter?style=flat-square)](https://github.com/matthiasmullie/path-converter/blob/master/LICENSE)
+[![Build status](https://img.shields.io/github/actions/workflow/status/PHPDevsr/path-converter-fork/test.yml?branch=master&style=flat-square)](https://github.com/PHPDevsr/path-converter-fork/actions/workflows/test.yml)
+[![Latest version](http://img.shields.io/packagist/v/phpdevsr/path-converter-fork?style=flat-square)](https://packagist.org/packages/phpdevsr/path-converter-fork)
+[![License](http://img.shields.io/packagist/l/phpdevsr/path-converter-fork?style=flat-square)](https://github.com/PHPDevsr/path-converter-fork/blob/master/LICENSE)
+
+> **Fork of [matthiasmullie/path-converter](https://github.com/matthiasmullie/path-converter)** — original library by [Matthias Mullie](https://www.mullie.eu).
 
 
 ## Usage
 
 ```php
-use MatthiasMullie\PathConverter\Converter;
+use PHPDevsr\PathConverter\Converter;
 
 $from = '/css/imports/icons.css';
 $to = '/css/minified.css';
@@ -37,10 +37,10 @@ now relative to $to (in constructor)
 
 ## Installation
 
-Simply add a dependency on `matthiasmullie/path-converter` to your composer.json file if you use [Composer](https://getcomposer.org/) to manage the dependencies of your project:
+Simply add a dependency on `phpdevsr/path-converter-fork` to your composer.json file if you use [Composer](https://getcomposer.org/) to manage the dependencies of your project:
 
 ```sh
-composer require matthiasmullie/path-converter
+composer require phpdevsr/path-converter-fork
 ```
 
 Although it's recommended to use Composer, you can actually include these files anyway you want.

@@ -1,9 +1,9 @@
 {
-    "name": "matthiasmullie/path-converter",
+    "name": "phpdevsr/path-converter-fork",
     "type": "library",
     "description": "Relative path converter",
     "keywords": ["relative", "path", "converter", "paths"],
-    "homepage": "https://github.com/matthiasmullie/path-converter",
+    "homepage": "https://github.com/PHPDevsr/path-converter-fork",
     "license": "MIT",
     "authors": [
         {
@@ -13,6 +13,9 @@
             "role": "Developer"
         }
     ],
+    "extra": {
+        "original-repo": "https://github.com/matthiasmullie/path-converter"
+    },
     "require": {
         "php": ">=5.3.0",
         "ext-pcre": "*"
@@ -24,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "MatthiasMullie\\PathConverter\\": "src/"
+            "PHPDevsr\\PathConverter\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MatthiasMullie\\PathConverter\\Tests\\": "tests/"
+            "PHPDevsr\\PathConverter\\Tests\\": "tests/"
         }
     }
 }

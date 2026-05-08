@@ -1,8 +1,8 @@
 <?php
 
-namespace MatthiasMullie\PathConverter\Tests;
+namespace PHPDevsr\PathConverter\Tests;
 
-use MatthiasMullie\PathConverter\NoConverter;
+use PHPDevsr\PathConverter\NoConverter;
 use PHPUnit\Framework\TestCase;
 
 /**
