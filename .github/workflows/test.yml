@@ -2,15 +2,15 @@ name: test-suite
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, develop ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Test PHP 8.4
         run: make test PHP=8.4
       - name: Test PHP 8.3
@@ -19,6 +19,6 @@ jobs:
         run: make test PHP=8.2
       - name: Test PHP 8.1
         run: make test PHP=8.1
-      - uses: codecov/codecov-action@v4
+      - uses: codecov/codecov-action@v6
         with:
           directory: build
