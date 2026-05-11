@@ -1,6 +1,6 @@
 <?php
 
-namespace MatthiasMullie\PathConverter;
+namespace PHPDevsr\PathConverter;
 
 /**
  * Don't convert paths.
