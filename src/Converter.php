@@ -150,8 +150,8 @@ class Converter implements ConverterInterface
         // $path could theoretically be empty (e.g. no path is given), in which
         // case it shouldn't expand to array(''), which would compare to one's
         // root /
-        $path1 = $path1 !== '' && $path1 !== '0' ? explode('/', $path1) : [];
-        $path2 = $path2 !== '' && $path2 !== '0' ? explode('/', $path2) : [];
+        $path1 = '' !== $path1 && '0' !== $path1 ? explode('/', $path1) : [];
+        $path2 = '' !== $path2 && '0' !== $path2 ? explode('/', $path2) : [];
 
         $shared = [];
 

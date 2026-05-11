@@ -38,27 +38,39 @@ final class NoConverterTest extends TestCase
 
     public static function provideConvertCases(): iterable
     {
-        return [[
-            '../images/img.jpg',
-            '../images/img.jpg',
-        ], [
+        yield [
+           '../images/img.jpg',
+           '../images/img.jpg',
+        ];
+
+        yield [
             '../../images/icon.gif',
             '../../images/icon.gif',
-        ], [
+        ];
+
+        yield [
             '/home/username/file.txt',
             '/home/username/file.txt',
-        ], [
+        ];
+
+        yield [
             'image.jpg',
             'image.jpg',
-        ], [
+        ];
+
+        yield [
             '../images/img.jpg',
             '../images/img.jpg',
-        ], [
+        ];
+
+        yield [
             '../images/img.jpg',
             '../images/img.jpg',
-        ], [
+        ];
+
+        yield [
             'image.jpg',
             'image.jpg',
-        ]];
+        ];
     }
 }
