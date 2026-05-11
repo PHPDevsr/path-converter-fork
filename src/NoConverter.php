@@ -13,7 +13,7 @@ namespace PHPDevsr\PathConverter;
  */
 class NoConverter implements ConverterInterface
 {
-    public function convert($path)
+    public function convert(string $path): string
     {
         return $path;
     }

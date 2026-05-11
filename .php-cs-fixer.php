@@ -7,14 +7,14 @@ $finder = PhpCsFixer\Finder::create()
 $config = new PhpCsFixer\Config();
 
 return $config
-    ->setRules(array(
+    ->setRules([
         '@Symfony' => true,
-        'array_syntax' => array('syntax' => 'long'),
-        'single_line_throw' => false,
-        'yoda_style' => array('equal' => false, 'identical' => false, 'less_and_greater' => false),
         '@PSR12' => true,
+        'array_syntax' => ['syntax' => 'short'],
+        'single_line_throw' => false,
+        'yoda_style' => ['equal' => false, 'identical' => false, 'less_and_greater' => false],
         'class_definition' => false, // @see https://github.com/FriendsOfPHP/PHP-CS-Fixer/issues/5463
-        'visibility_required' => array('elements' => array('property', 'method')),
-    ))
+        'visibility_required' => ['elements' => ['property', 'method']],
+    ])
     ->setFinder($finder)
     ->setUsingCache(false);

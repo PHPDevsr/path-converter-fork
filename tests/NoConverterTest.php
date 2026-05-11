@@ -17,7 +17,7 @@ class NoConverterTest extends TestCase
      *
      * @dataProvider dataProvider
      */
-    public function convert($relative, $expected)
+    public function convert(string $relative, string $expected): void
     {
         $converter = new NoConverter();
         $result = $converter->convert($relative);
@@ -25,50 +25,47 @@ class NoConverterTest extends TestCase
         $this->assertEquals($expected, $result);
     }
 
-    /**
-     * @return array [relative, from, to, expected result]
-     */
-    public static function dataProvider()
+    public static function dataProvider(): array
     {
-        $tests = array();
+        $tests = [];
 
-        $tests[] = array(
+        $tests[] = [
             '../images/img.jpg',
             '../images/img.jpg',
-        );
+        ];
 
-        $tests[] = array(
+        $tests[] = [
             '../../images/icon.gif',
             '../../images/icon.gif',
-        );
+        ];
 
         // absolute path - doesn't make sense :)
-        $tests[] = array(
+        $tests[] = [
             '/home/username/file.txt',
             '/home/username/file.txt',
-        );
+        ];
 
-        $tests[] = array(
+        $tests[] = [
             'image.jpg',
             'image.jpg',
-        );
+        ];
 
-        $tests[] = array(
+        $tests[] = [
             '../images/img.jpg',
             '../images/img.jpg',
-        );
+        ];
 
         // https://github.com/forkcms/forkcms/issues/1186
-        $tests[] = array(
+        $tests[] = [
             '../images/img.jpg',
             '../images/img.jpg',
-        );
+        ];
 
         // https://github.com/matthiasmullie/path-converter/issues/1
-        $tests[] = array(
+        $tests[] = [
             'image.jpg',
             'image.jpg',
-        );
+        ];
 
         return $tests;
     }

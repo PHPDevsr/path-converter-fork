@@ -20,5 +20,5 @@ interface ConverterInterface
      *
      * @return string The new path
      */
-    public function convert($path);
+    public function convert(string $path): string;
 }

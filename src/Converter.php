@@ -21,19 +21,19 @@ class Converter implements ConverterInterface
     /**
      * @var string
      */
-    protected $from;
+    protected string $from;
 
     /**
      * @var string
      */
-    protected $to;
+    protected string $to;
 
     /**
      * @param string $from The original base path (directory, not file!)
      * @param string $to   The new base path (directory, not file!)
      * @param string $root Root directory (defaults to `getcwd`)
      */
-    public function __construct($from, $to, $root = '')
+    public function __construct(string $from, string $to, string $root = '')
     {
         $shared = $this->shared($from, $to);
         if ($shared === '') {
@@ -66,7 +66,7 @@ class Converter implements ConverterInterface
      *
      * @return string
      */
-    protected function normalize($path)
+    protected function normalize(string $path): string
     {
         // deal with different operating systems' directory structure
         $path = rtrim(str_replace(DIRECTORY_SEPARATOR, '/', $path), '/');
@@ -107,15 +107,15 @@ class Converter implements ConverterInterface
      *
      * @return string
      */
-    protected function shared($path1, $path2)
+    protected function shared(string $path1, string $path2): string
     {
         // $path could theoretically be empty (e.g. no path is given), in which
         // case it shouldn't expand to array(''), which would compare to one's
         // root /
-        $path1 = $path1 ? explode('/', $path1) : array();
-        $path2 = $path2 ? explode('/', $path2) : array();
+        $path1 = $path1 ? explode('/', $path1) : [];
+        $path2 = $path2 ? explode('/', $path2) : [];
 
-        $shared = array();
+        $shared = [];
 
         // compare paths & strip identical ancestors
         foreach ($path1 as $i => $chunk) {
@@ -142,7 +142,7 @@ class Converter implements ConverterInterface
      *
      * @return string The new relative path
      */
-    public function convert($path)
+    public function convert(string $path): string
     {
         // quit early if conversion makes no sense
         if ($this->from === $this->to) {
@@ -176,7 +176,7 @@ class Converter implements ConverterInterface
      *
      * @return string
      */
-    protected function dirname($path)
+    protected function dirname(string $path): string
     {
         if (@is_file($path)) {
             return dirname($path);
