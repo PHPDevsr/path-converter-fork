@@ -1,4 +1,4 @@
-name: test-suite
+name: PHP CS Fixer
 
 on:
   push:
@@ -7,16 +7,10 @@ on:
     branches: [ master, develop ]
 
 jobs:
-  build:
+  php-cs-fixer:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-
-    strategy:
-      matrix:
-        php-version: ['8.2', '8.3', '8.4', '8.5']
-
-    name: PHP ${{ matrix.php-version }}
 
     steps:
       - uses: actions/checkout@v6
@@ -24,8 +18,8 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
-          coverage: xdebug
+          php-version: '8.2'
+          coverage: none
 
       - name: Validate composer.json
         run: composer validate --strict
@@ -33,9 +27,5 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-interaction
 
-      - name: Run PHPUnit
-        run: vendor/bin/phpunit --coverage-clover build/clover.xml
-
-      - uses: codecov/codecov-action@v6
-        with:
-          files: build/clover.xml
+      - name: Run PHP CS Fixer (dry-run)
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff --ansi

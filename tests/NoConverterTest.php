@@ -1,75 +1,76 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * This file is part of PHPDevsr\PathConverter.
+ *
+ * (c) 2026 Denny Septian Panggabean <xamidimura@gmail.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 namespace PHPDevsr\PathConverter\Tests;
 
 use PHPDevsr\PathConverter\NoConverter;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Converter test case.
+ *
+ * @internal
  */
-class NoConverterTest extends TestCase
+final class NoConverterTest extends TestCase
 {
     /**
      * Test Converter, provided by dataProvider.
-     *
-     * @test
-     *
-     * @dataProvider dataProvider
      */
-    public function convert($relative, $expected)
+    #[DataProvider('provideConvertCases')]
+    public function testConvert(string $relative, string $expected): void
     {
         $converter = new NoConverter();
         $result = $converter->convert($relative);
 
-        $this->assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
-    /**
-     * @return array [relative, from, to, expected result]
-     */
-    public static function dataProvider()
+    public static function provideConvertCases(): iterable
     {
-        $tests = array();
+        yield [
+           '../images/img.jpg',
+           '../images/img.jpg',
+        ];
 
-        $tests[] = array(
-            '../images/img.jpg',
-            '../images/img.jpg',
-        );
-
-        $tests[] = array(
+        yield [
             '../../images/icon.gif',
             '../../images/icon.gif',
-        );
+        ];
 
-        // absolute path - doesn't make sense :)
-        $tests[] = array(
+        yield [
             '/home/username/file.txt',
             '/home/username/file.txt',
-        );
+        ];
 
-        $tests[] = array(
+        yield [
             'image.jpg',
             'image.jpg',
-        );
+        ];
 
-        $tests[] = array(
+        yield [
             '../images/img.jpg',
             '../images/img.jpg',
-        );
+        ];
 
-        // https://github.com/forkcms/forkcms/issues/1186
-        $tests[] = array(
+        yield [
             '../images/img.jpg',
             '../images/img.jpg',
-        );
+        ];
 
-        // https://github.com/matthiasmullie/path-converter/issues/1
-        $tests[] = array(
+        yield [
             'image.jpg',
             'image.jpg',
-        );
-
-        return $tests;
+        ];
     }
 }

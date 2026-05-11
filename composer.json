@@ -11,19 +11,27 @@
             "homepage": "https://www.mullie.eu",
             "email": "pathconverter@mullie.eu",
             "role": "Developer"
+        },
+        {
+            "name": "Denny Septian Panggabean",
+            "homepage": "https://github.com/ddevsr",
+            "email": "xamidimura@gmail.com",
+            "role": "Maintainer"
         }
     ],
     "extra": {
         "original-repo": "https://github.com/matthiasmullie/path-converter"
     },
     "require": {
-        "php": ">=5.3.0",
+        "php": "^8.2",
         "ext-pcre": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=4.8",
-        "friendsofphp/php-cs-fixer": ">=2.0",
-        "squizlabs/php_codesniffer": ">=3.0"
+        "phpunit/phpunit": "^10.5 | ^11.0",
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpstan/phpstan": "^2.0",
+        "rector/rector": "^2.0",
+        "nexusphp/cs-config": "^3.28"
     },
     "autoload": {
         "psr-4": {
@@ -34,5 +42,27 @@
         "psr-4": {
             "PHPDevsr\\PathConverter\\Tests\\": "tests/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "scripts": {
+        "cs-fix": [
+            "vendor/bin/php-cs-fixer fix --ansi --verbose --diff"
+        ],
+        "cs": [
+            "vendor/bin/php-cs-fixer fix --ansi --verbose --dry-run --diff"
+        ],
+        "analyze": [
+            "Composer\\Config::disableProcessTimeout",
+            "@phpstan",
+            "@rector"
+        ],
+        "rector": "vendor/bin/rector process --dry-run",
+        "rector-fix": "vendor/bin/rector process",
+        "phpstan": "bash -c \"XDEBUG_MODE=off phpstan analyse\"",
+        "phpstan-baseline": "bash -c \"XDEBUG_MODE=off phpstan analyse --generate-baseline=phpstan-baseline.neon\""
     }
 }
