@@ -1,31 +1,42 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * This file is part of PHPDevsr\PathConverter.
+ *
+ * (c) 2026 Denny Septian Panggabean <xamidimura@gmail.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 namespace PHPDevsr\PathConverter\Tests;
 
 use PHPDevsr\PathConverter\NoConverter;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Converter test case.
+ *
+ * @internal
  */
-class NoConverterTest extends TestCase
+final class NoConverterTest extends TestCase
 {
     /**
      * Test Converter, provided by dataProvider.
-     *
-     * @test
-     *
-     * @dataProvider dataProvider
      */
-    public function convert(string $relative, string $expected): void
+    #[DataProvider('provideConvertCases')]
+    public function testConvert(string $relative, string $expected): void
     {
         $converter = new NoConverter();
         $result = $converter->convert($relative);
 
-        $this->assertEquals($expected, $result);
+        self::assertSame($expected, $result);
     }
 
-    public static function dataProvider(): array
+    public static function provideConvertCases(): iterable
     {
         $tests = [];
 
