@@ -17,8 +17,6 @@ jobs:
         run: make test PHP=8.3
       - name: Test PHP 8.2
         run: make test PHP=8.2
-      - name: Test PHP 8.1
-        run: make test PHP=8.1
       - uses: codecov/codecov-action@v6
         with:
           directory: build
