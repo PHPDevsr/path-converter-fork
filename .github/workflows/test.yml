@@ -9,16 +9,33 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    strategy:
+      matrix:
+        php-version: ['8.2', '8.3', '8.4', '8.5']
+
+    name: PHP ${{ matrix.php-version }}
+
     steps:
       - uses: actions/checkout@v6
-      - name: Test PHP 8.5
-        run: make test PHP=8.5
-      - name: Test PHP 8.4
-        run: make test PHP=8.4
-      - name: Test PHP 8.3
-        run: make test PHP=8.3
-      - name: Test PHP 8.2
-        run: make test PHP=8.2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: xdebug
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --coverage-clover build/clover.xml
+
       - uses: codecov/codecov-action@v6
         with:
-          directory: build
+          files: build/clover.xml
