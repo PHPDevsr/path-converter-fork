@@ -129,7 +129,7 @@ class Converter implements ConverterInterface
          *     /home/forkcms/frontend/core/layout/images/img.gif
          */
         do {
-            $path = preg_replace('/[^\/]+(?<!\.\.)\/\.\.\//', '', $path, -1, $count);
+            $path = preg_replace('/[^\/]+(?<!\.\.)\/\.\.\//', '', (string) $path, -1, $count);
         } while ($count);
 
         return $path;
@@ -150,8 +150,8 @@ class Converter implements ConverterInterface
         // $path could theoretically be empty (e.g. no path is given), in which
         // case it shouldn't expand to array(''), which would compare to one's
         // root /
-        $path1 = $path1 ? explode('/', $path1) : [];
-        $path2 = $path2 ? explode('/', $path2) : [];
+        $path1 = $path1 !== '' && $path1 !== '0' ? explode('/', $path1) : [];
+        $path2 = $path2 !== '' && $path2 !== '0' ? explode('/', $path2) : [];
 
         $shared = [];
 

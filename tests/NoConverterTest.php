@@ -38,46 +38,27 @@ final class NoConverterTest extends TestCase
 
     public static function provideConvertCases(): iterable
     {
-        $tests = [];
-
-        $tests[] = [
+        return [[
             '../images/img.jpg',
             '../images/img.jpg',
-        ];
-
-        $tests[] = [
+        ], [
             '../../images/icon.gif',
             '../../images/icon.gif',
-        ];
-
-        // absolute path - doesn't make sense :)
-        $tests[] = [
+        ], [
             '/home/username/file.txt',
             '/home/username/file.txt',
-        ];
-
-        $tests[] = [
+        ], [
             'image.jpg',
             'image.jpg',
-        ];
-
-        $tests[] = [
+        ], [
             '../images/img.jpg',
             '../images/img.jpg',
-        ];
-
-        // https://github.com/forkcms/forkcms/issues/1186
-        $tests[] = [
+        ], [
             '../images/img.jpg',
             '../images/img.jpg',
-        ];
-
-        // https://github.com/matthiasmullie/path-converter/issues/1
-        $tests[] = [
+        ], [
             'image.jpg',
             'image.jpg',
-        ];
-
-        return $tests;
+        ]];
     }
 }
